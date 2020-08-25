@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">עסק קסם</string>
+    <string name="time_of_day">זמן ביום</string>
+    <string name="employee_type">סוג עובד</string>
+    <string name="type_employee">סוג עובד</string>
+    <string name="type_owner">בעל סוג</string>
+    <string name="title">כותרת</string>
+    <string name="name">שם</string>
+    <string name="mobile">נייד</string>
+    <string name="email">אימייל</string>
+    <string name="password">סיסמה</string>
+    <string name="password_verification">אימות סיסמא</string>
+    <string name="or">או</string>
+    <string name="login">התחברות</string>
+    <string name="register">להירשם</string>
+    <string name="forgot_password">שכחת את הסיסמא?</string>
+    <string name="create_account">צור חשבון</string>
+    <string name="icon">אייקון</string>
+    <string name="nick_name">כינוי</string>
+    <string name="saloon_code">קוד סלון</string>
+    <string name="email_verification">אימות אימייל</string>
+    <string name="reset_password">לאפס את הסיסמה</string>
+    <string name="phone_number">מספר טלפון</string>
+    <string name="first_step">צעד ראשון</string>
+    <string name="owner_details">פרטי הבעלים</string>
+    <string name="second_step">צעד שני</string>
+    <string name="saloon_details">פרטי סלון</string>
+    <string name="third_step">צעד שלישי</string>
+    <string name="saloon_activity">פעילות סלון</string>
+    <string name="fourth_step">שלב רביעי</string>
+    <string name="employee_activity">פעילות עובדים</string>
+    <string name="next">הבא</string>
+    <string name="re_register">להירשם מחדש</string>
+</resources>

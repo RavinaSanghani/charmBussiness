@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#6200EE</color>
+    <color name="colorPrimaryDark">#3700B3</color>
+    <color name="colorAccent">#03DAC5</color>
+
+    <color name="splashBackGround">#F6FBDE</color>
+    <color name="themeSepratorLightColour">#6ECCDC</color>
+    <color name="themeSepratorDarkColour">#50C5D8</color>
+    <color name="themeBackgroundGray">#E7E5E5</color>
+    <color name="themeBackgroundLightGray">#D3D3D3</color>
+    <color name="themeDialogBackGround">#000000</color>
+    <color name="themeButtonBackgroundColor">#000000</color>
+    <color name="themeButtonTitleColor">#FFFFFF</color>
+    <color name="themeLabelTitleColor">#FFFFFF</color>
+    <color name="themeLabelTitleLightColor">#C8C8C8</color>
+    <color name="themeNavigationColor">#000000</color>
+
+    <color name="themeTextColor">#000000</color>
+    <color name="themeTextSelectedTinyColor">#0079FF</color>
+    <color name="themeTextUnselectedTintColor">#A0C7CC</color>
+    <color name="themeOwnerSelectedColor">#AAAAAA</color>
+    <color name="themeOwnerUnselectedColor">#0079FF</color>
+    <color name="themeLoginSepratorColor">#70C7D8</color>
+    <color name="themeLoginBackground">#FFFFFF</color>
+    <color name="themeRegisterSepratorColor">#39A4B6</color>
+    <color name="themeLabelColor">#81CED4</color>
+    <color name="themeStepsBackColor">#7DCCDB</color>
+    <color name="themeStepsLinkColor">#5681CF</color>
+    <color name="themeDisableColor">#B8B8B8</color>
+    <color name="themeSelectedColor">#6ECCDC</color>
+    <color name="themeEnableColor">#6ECCDC</color>
+</resources>

@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/themeSepratorLightColour"
+    android:padding="@dimen/_10sdp"
+    tools:context=".HomeActivity">
+
+    <RelativeLayout
+        android:id="@+id/rl1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/txt_time_of_day"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:gravity="center"
+            android:text="@string/time_of_day"
+            android:textColor="@color/themeLabelTitleColor"
+            android:textSize="@dimen/_25sdp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txt_time_of_day"
+            android:layout_marginTop="13dp"
+            android:gravity="center"
+            android:text="@string/employee_type"
+            android:textColor="@color/themeLabelTitleColor"
+            android:textSize="@dimen/_18sdp" />
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/rl1">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:id="@+id/type_employee"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_70sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:background="@drawable/employee_type_background">
+
+                <ImageView
+                    android:id="@+id/img_type_employee"
+                    android:layout_width="@dimen/_40sdp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentLeft="true"
+                    android:src="@drawable/img_type_employee"
+                    tools:ignore="ContentDescription" />
+
+                <TextView
+                    android:id="@+id/txt_type_employee"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_toEndOf="@id/img_type_employee"
+                    android:layout_toRightOf="@id/img_type_employee"
+                    android:gravity="start|center"
+                    android:text="@string/type_employee"
+                    android:textColor="@color/themeLabelTitleColor"
+                    android:textSize="@dimen/_12sdp"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/type_owner"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_70sdp"
+                android:layout_below="@id/type_employee"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:background="@drawable/employee_type_background">
+
+                <ImageView
+                    android:id="@+id/img_type_owner"
+                    android:layout_width="@dimen/_40sdp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentLeft="true"
+                    android:src="@drawable/img_type_owner"
+                    tools:ignore="ContentDescription" />
+
+                <TextView
+                    android:id="@+id/txt_type_owner"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_toEndOf="@id/img_type_owner"
+                    android:layout_toRightOf="@id/img_type_owner"
+                    android:gravity="start|center"
+                    android:text="@string/type_owner"
+                    android:textColor="@color/themeLabelTitleColor"
+                    android:textSize="@dimen/_12sdp"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+        </RelativeLayout>
+    </ScrollView>
+</RelativeLayout>

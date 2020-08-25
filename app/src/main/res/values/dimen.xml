@@ -1,0 +1,12 @@
+<resources>
+    <dimen name="space_text_tiny">@dimen/_15sdp</dimen>
+    <dimen name="icon_owner_width">@dimen/_40sdp</dimen>
+    <dimen name="icon_owner_height">@dimen/_40sdp</dimen>
+    <dimen name="icon_profile_width">@dimen/_55sdp</dimen>
+    <dimen name="icon_profile_height">@dimen/_55sdp</dimen>
+    <dimen name="icon_dialog_img_width">@dimen/_45sdp</dimen>
+    <dimen name="icon_dialog_img_height">@dimen/_45sdp</dimen>
+    <dimen name="steps_title">@dimen/_20sdp</dimen>
+    <dimen name="steps_sub_title">@dimen/_12sdp</dimen>
+    <dimen name="steps_height">@dimen/_80sdp</dimen>
+</resources>
