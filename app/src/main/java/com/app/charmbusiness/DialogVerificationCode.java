@@ -58,7 +58,7 @@ public class DialogVerificationCode extends Dialog {
             return false;
         }
         if (!str_code.equals(String.valueOf(verificationCode))) {
-            ValidationDialog dialog = new ValidationDialog(getContext(), Constants.mismatch_msg, Constants.VERIFICATION_VALID_MSG, et_code);
+            ValidationDialog dialog = new ValidationDialog(getContext(), Constants.MISMATCH_MSG, Constants.VERIFICATION_VALID_MSG, et_code);
             dialog.validationDialog();
             return false;
         }

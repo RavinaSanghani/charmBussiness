@@ -128,7 +128,7 @@ public class OwnerRegisterActivity extends AppCompatActivity implements View.OnC
             return false;
         }*/
         if (TextUtils.isEmpty(str_mobile)) {
-            ValidationDialog dialog = new ValidationDialog(OwnerRegisterActivity.this, Constants.EMPTY_MSG, Constants.mobile_msg, et_mobile);
+            ValidationDialog dialog = new ValidationDialog(OwnerRegisterActivity.this, Constants.EMPTY_MSG, Constants.MOBILE_MSG, et_mobile);
             dialog.validationDialog();
             return false;
         }
@@ -143,27 +143,27 @@ public class OwnerRegisterActivity extends AppCompatActivity implements View.OnC
             return false;
         }
         if (!str_email.matches("^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$")) {
-            ValidationDialog dialog = new ValidationDialog(OwnerRegisterActivity.this, Constants.INVALID_MSG, Constants.email_valid_msg, et_email);
+            ValidationDialog dialog = new ValidationDialog(OwnerRegisterActivity.this, Constants.INVALID_MSG, Constants.EMAIL_VALID_MSG, et_email);
             dialog.validationDialog();
             return false;
         }
         if (TextUtils.isEmpty(str_password)) {
-            ValidationDialog dialog = new ValidationDialog(OwnerRegisterActivity.this, Constants.EMPTY_MSG, Constants.password_msg, et_password);
+            ValidationDialog dialog = new ValidationDialog(OwnerRegisterActivity.this, Constants.EMPTY_MSG, Constants.PASSWORD_MSG, et_password);
             dialog.validationDialog();
             return false;
         }
         if (str_password.length() < 8) {
-            ValidationDialog dialog = new ValidationDialog(OwnerRegisterActivity.this, Constants.INVALID_MSG, Constants.password_valid_msg, et_password);
+            ValidationDialog dialog = new ValidationDialog(OwnerRegisterActivity.this, Constants.INVALID_MSG, Constants.PASSWORD_VALID_MSG, et_password);
             dialog.validationDialog();
             return false;
         }
         if (TextUtils.isEmpty(str_password_verification)) {
-            ValidationDialog dialog = new ValidationDialog(OwnerRegisterActivity.this, Constants.EMPTY_MSG, Constants.password_verification_msg, et_password_verification);
+            ValidationDialog dialog = new ValidationDialog(OwnerRegisterActivity.this, Constants.EMPTY_MSG, Constants.PASSWORD_VERIFICATION_MSG, et_password_verification);
             dialog.validationDialog();
             return false;
         }
         if (!str_password_verification.equals(str_password)) {
-            ValidationDialog dialog = new ValidationDialog(OwnerRegisterActivity.this, Constants.mismatch_msg, Constants.password_match_msg, et_password_verification);
+            ValidationDialog dialog = new ValidationDialog(OwnerRegisterActivity.this, Constants.MISMATCH_MSG, Constants.PASSWORD_MATCH_MSG, et_password_verification);
             dialog.validationDialog();
             return false;
         }

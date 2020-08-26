@@ -155,7 +155,7 @@ public class RegistrationStepsActivity extends AppCompatActivity implements View
 
             AlertDialog alertDialog = builder.create();
             alertDialog.show();*/
-
+                Utility.startActivity(RegistrationStepsActivity.this,WebViewActivity.class,false);
                 break;
             case R.id.txt_next:
                 img_next.performClick();

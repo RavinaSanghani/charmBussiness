@@ -11,11 +11,13 @@ import com.app.charmbusiness.DialogForgotPassword;
 import com.app.charmbusiness.DialogVerificationCode;
 import com.app.charmbusiness.HomeActivity;
 import com.app.charmbusiness.LoginActivity;
+import com.app.charmbusiness.MainActivity;
 import com.app.charmbusiness.OwnerRegisterActivity;
 import com.app.charmbusiness.PrefManager;
 import com.app.charmbusiness.RegistrationStepsActivity;
 import com.app.charmbusiness.SplashActivity;
 import com.app.charmbusiness.Utility;
+import com.app.charmbusiness.responseModel.EmployeeLoginResponse;
 import com.app.charmbusiness.responseModel.EmployeeLogoutResponse;
 import com.app.charmbusiness.responseModel.RegisterEmployeeResponse;
 import com.app.charmbusiness.responseModel.ResetEmployeePasswordResponse;
@@ -30,10 +32,6 @@ import androidx.annotation.RequiresApi;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
-import static com.app.charmbusiness.PrefManager.KEY_EMPLOYEE_ID;
-import static com.app.charmbusiness.PrefManager.KEY_LOGIN_TOKEN;
-import static com.app.charmbusiness.PrefManager.KEY_REGISTRATION_STEP;
 
 @RequiresApi(api = Build.VERSION_CODES.M)
 public class ApiCall {
@@ -56,13 +54,13 @@ public class ApiCall {
                         if (response.body().getCode().equals("100")) {
                             if (response.body().getIsOwner()) {
                                 if (response.body().getRegCompleted()) {
-                                    //go to main screen()
+                                    Utility.startActivity(activity, MainActivity.class, false);
                                 } else {
                                     prefManager.putInteger(PrefManager.KEY_REGISTRATION_STEP, (int) (response.body().getRegStep() + 1));
                                     Utility.startActivity(activity, RegistrationStepsActivity.class, false);
                                 }
                             } else {
-                                //go to main screen()
+                                Utility.startActivity(activity, MainActivity.class, false);
                             }
 
                         } else {
@@ -159,15 +157,22 @@ public class ApiCall {
                 if (response.isSuccessful()) {
                     if (response.body() != null) {
                         Utility.printLog(TAG, "resetEmployeePassword:onResponse:ResponseCode:" + response.body().getCode());
+                        if (response.body().getCode().equals("100")) {
+                            ((LoginActivity)activity).forgotPasswordDialogDismiss();
+                        }else {
+                            Utility.showMessageDialog(activity, response.body().getMessage());
+                            ((LoginActivity)activity).forgotPasswordDialogDismiss();
+                        }
                     }
                 } else {
                     Utility.showMessageDialog(activity, response.message());
                 }
+                ((LoginActivity)activity).hideProgressBar();
             }
 
             @Override
             public void onFailure(@NotNull Call<ResetEmployeePasswordResponse> call, @NotNull Throwable t) {
-
+                ((LoginActivity)activity).hideProgressBar();
                 Utility.printLog(TAG, "resetEmployeePassword:onFailure:Error:" + t.getMessage());
             }
         });
@@ -175,23 +180,41 @@ public class ApiCall {
 
     public static void employeeLogin(final Activity activity, JsonObject jsonObject) {
         apiInterface = ApiClient.getClient().create(ApiInterface.class);
-        Call<RegisterEmployeeResponse> verificationCodeCall = apiInterface.employeeLogin(jsonObject);
-        verificationCodeCall.enqueue(new Callback<RegisterEmployeeResponse>() {
+        Call<EmployeeLoginResponse> employeeLoginCall = apiInterface.employeeLogin(jsonObject);
+        employeeLoginCall.enqueue(new Callback<EmployeeLoginResponse>() {
             @Override
-            public void onResponse(@NotNull Call<RegisterEmployeeResponse> call, @NotNull Response<RegisterEmployeeResponse> response) {
+            public void onResponse(@NotNull Call<EmployeeLoginResponse> call, @NotNull Response<EmployeeLoginResponse> response) {
                 if (response.isSuccessful()) {
                     if (response.body() != null) {
-
                         Utility.printLog(TAG, "employeeLogin:onResponse:" + response.body());
-                        //Toast.makeText(context, "Welcome to Charm Business", Toast.LENGTH_SHORT).show();
+                        if (response.body().getCode().equals("100")) {
+                            prefManager.setString(PrefManager.KEY_LOGIN_TOKEN, response.body().getLoginToken());
+                            if (response.body().getOwner()){
+                                if (response.body().getRegCompleted() && (!prefManager.getString(PrefManager.KEY_LOGIN_TOKEN,"").isEmpty())){
+                                    Utility.startActivity(activity,MainActivity.class,false);
+                                }else {
+                                    prefManager.putInteger(PrefManager.KEY_REGISTRATION_STEP, (int) (response.body().getRegStep() + 1));
+                                    Utility.startActivity(activity, RegistrationStepsActivity.class, false);
+                                }
+                            }else {
+                                if (!prefManager.getString(PrefManager.KEY_LOGIN_TOKEN,"").isEmpty()){
+                                    Utility.startActivity(activity,MainActivity.class,false);
+                                }
+                            }
+
+                        }else {
+                            Utility.showMessageDialog(activity, response.body().getMessage());
+                        }
                     }
                 } else {
                     Utility.showMessageDialog(activity, response.message());
                 }
+                ((LoginActivity)activity).hideProgressBar();
             }
 
             @Override
-            public void onFailure(@NotNull Call<RegisterEmployeeResponse> call, @NotNull Throwable t) {
+            public void onFailure(@NotNull Call<EmployeeLoginResponse> call, @NotNull Throwable t) {
+                ((LoginActivity)activity).hideProgressBar();
                 Utility.printLog(TAG, "employeeLogin:onFailure:Error:" + t.getMessage());
             }
         });

@@ -32,4 +32,7 @@
     <string name="employee_activity">פעילות עובדים</string>
     <string name="next">הבא</string>
     <string name="re_register">להירשם מחדש</string>
+    <string name="ok">בסדר</string>
+    <string name="verification_code">קוד אימות</string>
+    <string name="enter_verification_code">הכנס קוד אימות</string>
 </resources>

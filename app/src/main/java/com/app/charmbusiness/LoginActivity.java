@@ -28,7 +28,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     private Context  context;
     private ProgressBar progressBar;
-
+    private DialogForgotPassword forgotPasswordDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,6 +67,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 str_mobile = et_mobile.getText().toString();
                 str_password = et_password.getText().toString();
                 str_user_type="EMPLOPYEE";
+
                 if (validation()) {
                     loginEmployee();
                 }
@@ -75,10 +76,14 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 startActivity(new Intent(LoginActivity.this, EmployeeRegisterActivity.class));
                 break;
             case R.id.btn_forgot_password:
-                DialogForgotPassword forgotPasswordActivity = new DialogForgotPassword(LoginActivity.this);
-                forgotPasswordActivity.show();
+                forgotPasswordDialog = new DialogForgotPassword(LoginActivity.this);
+                forgotPasswordDialog.show();
                 break;
         }
+    }
+
+    public void forgotPasswordDialogDismiss(){
+        forgotPasswordDialog.dismiss();
     }
 
     private void loginEmployee(){
@@ -102,7 +107,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private boolean validation() {
 
         if (TextUtils.isEmpty(str_mobile)) {
-            ValidationDialog dialog = new ValidationDialog(LoginActivity.this, Constants.EMPTY_MSG, Constants.mobile_msg,et_mobile);
+            ValidationDialog dialog = new ValidationDialog(LoginActivity.this, Constants.EMPTY_MSG, Constants.MOBILE_MSG,et_mobile);
             dialog.validationDialog();
             return false;
         }
@@ -112,12 +117,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             return false;
         }*/
         if (TextUtils.isEmpty(str_password)) {
-            ValidationDialog dialog = new ValidationDialog(LoginActivity.this, Constants.EMPTY_MSG, Constants.password_msg,et_password);
+            ValidationDialog dialog = new ValidationDialog(LoginActivity.this, Constants.EMPTY_MSG, Constants.PASSWORD_MSG,et_password);
             dialog.validationDialog();
             return false;
         }
         if (str_password.length()< 8 ) {
-            ValidationDialog dialog = new ValidationDialog(LoginActivity.this, Constants.INVALID_MSG, Constants.password_valid_msg,et_password);
+            ValidationDialog dialog = new ValidationDialog(LoginActivity.this, Constants.INVALID_MSG, Constants.PASSWORD_VALID_MSG,et_password);
             dialog.validationDialog();
             return false;
         }
@@ -126,7 +131,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     public void showProgressBar() {
         progressBar.setVisibility(View.VISIBLE);
-
     }
 
     public void hideProgressBar() {

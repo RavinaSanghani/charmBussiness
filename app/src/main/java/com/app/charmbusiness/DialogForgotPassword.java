@@ -49,7 +49,7 @@ public class DialogForgotPassword extends Dialog {
 
                 if (validation()){
                     if (Utility.isConnectedToInternet(activity)){
-                        dismiss();
+                        ((LoginActivity)activity).showProgressBar();
                         ApiCall.resetEmployeePassword(activity,jsonObject);
                     }else {
                         Utility.showMessageDialog(activity,Constants.NO_INTERNET_CONNECTION);
@@ -62,7 +62,7 @@ public class DialogForgotPassword extends Dialog {
     private boolean validation() {
 
         if (TextUtils.isEmpty(str_mobile)) {
-            ValidationDialog dialog = new ValidationDialog(getContext(), Constants.EMPTY_MSG, Constants.mobile_msg, et_mobile);
+            ValidationDialog dialog = new ValidationDialog(getContext(), Constants.EMPTY_MSG, Constants.MOBILE_MSG, et_mobile);
             dialog.validationDialog();
             return false;
         }
