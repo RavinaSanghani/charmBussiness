@@ -31,9 +31,7 @@ public class OwnerRegisterActivity extends AppCompatActivity implements View.OnC
     private Button btn_register;
     private boolean str_profile;
 
-    private Context context;
     private PrefManager prefManager;
-    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,9 +42,7 @@ public class OwnerRegisterActivity extends AppCompatActivity implements View.OnC
 
     private void init() {
 
-        context = this;
-        prefManager = new PrefManager(context);
-
+        prefManager = new PrefManager(OwnerRegisterActivity.this);
 
         et_name = findViewById(R.id.et_name);
         et_mobile = findViewById(R.id.et_mobile);
@@ -57,7 +53,6 @@ public class OwnerRegisterActivity extends AppCompatActivity implements View.OnC
         img_owner_male = findViewById(R.id.img_owner_male);
         img_owner_woman = findViewById(R.id.img_owner_woman);
         btn_register = findViewById(R.id.btn_register);
-        progressBar = findViewById(R.id.progressBar);
 
         btn_register.setOnClickListener(this);
         img_owner_male.setOnClickListener(this);
@@ -172,8 +167,8 @@ public class OwnerRegisterActivity extends AppCompatActivity implements View.OnC
         jsonObject.addProperty(Constants.KEY_API_PHONE, phone);
         Utility.printLog(TAG, "verificationCode:jsonObject:" + jsonObject);
 
-        if (Utility.isConnectedToInternet(context)) {
-            showProgressBar();
+        if (Utility.isConnectedToInternet(OwnerRegisterActivity.this)) {
+            Utility.progressBarDialogShow(OwnerRegisterActivity.this);
             ApiCall.verificationCode(OwnerRegisterActivity.this, jsonObject);
         } else {
             Utility.showDialog(OwnerRegisterActivity.this,Constants.KEY_ALERT,Constants.NO_INTERNET_CONNECTION);
@@ -195,21 +190,13 @@ public class OwnerRegisterActivity extends AppCompatActivity implements View.OnC
         jsonObject.addProperty(Constants.KEY_API_MALE, str_profile);
         Utility.printLog(TAG, "registerOwner:jsonObject:" + jsonObject);
 
-        if (Utility.isConnectedToInternet(context)) {
-            showProgressBar();
+        if (Utility.isConnectedToInternet(OwnerRegisterActivity.this)) {
+            Utility.progressBarDialogShow(OwnerRegisterActivity.this);
             ApiCall.registerOwner(OwnerRegisterActivity.this, jsonObject);
         } else {
             Utility.showDialog(OwnerRegisterActivity.this,Constants.KEY_ALERT,Constants.NO_INTERNET_CONNECTION);
         }
 
-    }
-
-    public void showProgressBar() {
-        progressBar.setVisibility(View.VISIBLE);
-    }
-
-    public void hideProgressBar() {
-        progressBar.setVisibility(View.GONE);
     }
 
 }

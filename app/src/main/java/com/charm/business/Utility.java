@@ -6,15 +6,20 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.Build;
 import android.util.Log;
 import android.view.Gravity;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 
+@RequiresApi(api = Build.VERSION_CODES.M)
 public class Utility {
+
+    private static DialogProgressBar dialogProgressBar;
 
     public static void startActivity(Activity activity, Class<?> c, boolean isFinish) {
         Intent intent = new Intent(activity, c);
@@ -23,18 +28,6 @@ public class Utility {
             activity.finish();
         }
     }
-
-    public static void startActivity(Activity activity, Class<?> c, boolean isFinish, boolean deleteAllStack) {
-        Intent intent = new Intent(activity, c);
-        if (isFinish) {
-            activity.finish();
-        }
-        if (deleteAllStack) {
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-        }
-        activity.startActivity(intent);
-    }
-
 
     public static void printLog(String tag, String msg) {
         Log.e(tag, msg + "");
@@ -68,7 +61,7 @@ public class Utility {
         builder.setCustomTitle(title_text);
         builder.setMessage(message);
         builder.setCancelable(false);
-        builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
@@ -91,4 +84,13 @@ public class Utility {
         leftSpacer.setVisibility(android.view.View.GONE);
     }
 
+    public static void progressBarDialogShow(Activity activity){
+        dialogProgressBar=new DialogProgressBar(activity);
+        dialogProgressBar.show();
+        dialogProgressBar.setCanceledOnTouchOutside(false);
+    }
+
+    public static void progressBarDialogDismiss() {
+        dialogProgressBar.dismiss();
+    }
 }

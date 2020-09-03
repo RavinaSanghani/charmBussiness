@@ -3,7 +3,7 @@ package com.charm.business.responseModel;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class EmployeeLogoutResponse {
+public class ResetOwnerPasswordResponse {
 
     @SerializedName("code")
     @Expose
@@ -30,7 +30,7 @@ public class EmployeeLogoutResponse {
 
     @Override
     public String toString() {
-        return "EmployeeLogoutResponse{" +
+        return "ResetEmployeePasswordModel{" +
                 "code='" + code + '\'' +
                 ", message=" + message +
                 '}';

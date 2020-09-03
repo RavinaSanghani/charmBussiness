@@ -26,8 +26,6 @@ public class RegistrationStepsActivity extends AppCompatActivity implements View
     private TextView txt_next;
     private Button btn_re_register;
 
-    private ProgressBar progressBar;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,7 +44,6 @@ public class RegistrationStepsActivity extends AppCompatActivity implements View
         img_next = findViewById(R.id.img_next);
         txt_next = findViewById(R.id.txt_next);
         btn_re_register = findViewById(R.id.btn_re_register);
-        progressBar = findViewById(R.id.progressBar);
 
         img_next.setOnClickListener(this);
         txt_next.setOnClickListener(this);
@@ -130,29 +127,6 @@ public class RegistrationStepsActivity extends AppCompatActivity implements View
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.img_next:
-           /* String[] languageList = {"Step 1", "Step 2", "Step 3", "Step 4"};
-            AlertDialog.Builder builder = new AlertDialog.Builder(RegistrationStepsActivity.this);
-            builder.setTitle("Select Steps");
-            builder.setSingleChoiceItems(languageList, -1, new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-
-                    if (which == 0) {
-                        layoutChange(1);
-                    } else if (which == 1) {
-                        layoutChange(2);
-                    } else if (which == 2) {
-                        layoutChange(3);
-                    } else if (which == 3) {
-                        layoutChange(4);
-                    }
-
-                    dialog.dismiss();
-                }
-            });
-
-            AlertDialog alertDialog = builder.create();
-            alertDialog.show();*/
                 Utility.startActivity(RegistrationStepsActivity.this,WebViewActivity.class,false);
                 break;
             case R.id.txt_next:
@@ -172,20 +146,12 @@ public class RegistrationStepsActivity extends AppCompatActivity implements View
         Utility.printLog(TAG,"employeeLogout:jsonObject:"+jsonObject);
 
         if (Utility.isConnectedToInternet(RegistrationStepsActivity.this)){
-            showProgressBar();
+            Utility.progressBarDialogShow(RegistrationStepsActivity.this);
             ApiCall.employeeLogout(RegistrationStepsActivity.this,jsonObject);
         }else {
             Utility.showDialog(RegistrationStepsActivity.this,Constants.KEY_ALERT,Constants.NO_INTERNET_CONNECTION);
         }
 
-    }
-
-    public void showProgressBar() {
-        progressBar.setVisibility(View.VISIBLE);
-    }
-
-    public void hideProgressBar() {
-        progressBar.setVisibility(View.GONE);
     }
 
 }

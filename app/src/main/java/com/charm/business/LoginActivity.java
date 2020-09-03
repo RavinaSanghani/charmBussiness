@@ -21,12 +21,10 @@ import com.google.gson.JsonObject;
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
     private static final String TAG = "LoginActivity";
-    private Button btn_login, btn_register, btn_forgot_password;
+    private Button btn_login, btn_forgot_password;
     private EditText et_mobile, et_password;
     private String str_mobile, str_password,str_user_type;
 
-    private Context  context;
-    private ProgressBar progressBar;
     private DialogForgotPassword forgotPasswordDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,24 +36,16 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     private void init() {
-        context=this;
-
-        progressBar = findViewById(R.id.progressBar);
 
         et_mobile = findViewById(R.id.et_mobile);
         et_password = findViewById(R.id.et_password);
 
         btn_login = findViewById(R.id.btn_login);
-        btn_register = findViewById(R.id.btn_register);
         btn_forgot_password = findViewById(R.id.btn_forgot_password);
 
         btn_login.setOnClickListener(this);
-        btn_register.setOnClickListener(this);
         btn_forgot_password.setOnClickListener(this);
 
-        /*et_mobile.setText("0508768674");
-        et_password.setText("1234567890");
-    */
     }
 
     @Override
@@ -70,9 +60,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 if (validation()) {
                     loginEmployee();
                 }
-                break;
-            case R.id.btn_register:
-                startActivity(new Intent(LoginActivity.this, EmployeeRegisterActivity.class));
                 break;
             case R.id.btn_forgot_password:
                 forgotPasswordDialog = new DialogForgotPassword(LoginActivity.this);
@@ -94,8 +81,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         jsonObject.addProperty(Constants.KEY_API_USER_TYPE, str_user_type);
         Utility.printLog(TAG,"loginEmployee:jsonObject:"+jsonObject);
 
-        if (Utility.isConnectedToInternet(context)){
-            showProgressBar();
+        if (Utility.isConnectedToInternet(LoginActivity.this)){
+            Utility.progressBarDialogShow(LoginActivity.this);
             ApiCall.employeeLogin(LoginActivity.this,jsonObject);
         }else {
             Utility.showDialog(LoginActivity.this,Constants.KEY_ALERT,Constants.NO_INTERNET_CONNECTION);
@@ -127,14 +114,5 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }
         return true;
     }
-
-    public void showProgressBar() {
-        progressBar.setVisibility(View.VISIBLE);
-    }
-
-    public void hideProgressBar() {
-        progressBar.setVisibility(View.GONE);
-    }
-
 
 }

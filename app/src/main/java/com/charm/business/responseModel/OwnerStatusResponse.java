@@ -3,7 +3,7 @@ package com.charm.business.responseModel;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class EmployeeLoginResponse {
+public class OwnerStatusResponse {
     @SerializedName("code")
     @Expose
     private String code;
@@ -16,15 +16,12 @@ public class EmployeeLoginResponse {
     @SerializedName("regStep")
     @Expose
     private Long regStep;
-    @SerializedName("owner")
+    @SerializedName("oldSession")
     @Expose
-    private Boolean owner;
-    @SerializedName("oldSesison")
+    private Boolean oldSession;
+    @SerializedName("isOwner")
     @Expose
-    private Boolean oldSesison;
-    @SerializedName("loginToken")
-    @Expose
-    private String loginToken;
+    private Boolean isOwner;
 
     public String getCode() {
         return code;
@@ -58,40 +55,32 @@ public class EmployeeLoginResponse {
         this.regStep = regStep;
     }
 
-    public Boolean getOwner() {
-        return owner;
+    public Boolean getOldSession() {
+        return oldSession;
     }
 
-    public void setOwner(Boolean owner) {
-        this.owner = owner;
+    public void setOldSession(Boolean oldSession) {
+        this.oldSession = oldSession;
     }
 
-    public Boolean getOldSesison() {
-        return oldSesison;
+    public Boolean getIsOwner() {
+        return isOwner;
     }
 
-    public void setOldSesison(Boolean oldSesison) {
-        this.oldSesison = oldSesison;
+    public void setIsOwner(Boolean isOwner) {
+        this.isOwner = isOwner;
     }
 
-    public String getLoginToken() {
-        return loginToken;
-    }
-
-    public void setLoginToken(String loginToken) {
-        this.loginToken = loginToken;
-    }
 
     @Override
     public String toString() {
-        return "EmployeeLoginResponse{" +
+        return "EmployeeStatusResponse{" +
                 "code='" + code + '\'' +
-                ", message=" + message +
+                ", message='" + message + '\'' +
                 ", regCompleted=" + regCompleted +
                 ", regStep=" + regStep +
-                ", owner=" + owner +
-                ", oldSesison=" + oldSesison +
-                ", loginToken='" + loginToken + '\'' +
+                ", oldSession=" + oldSession +
+                ", isOwner=" + isOwner +
                 '}';
     }
 }

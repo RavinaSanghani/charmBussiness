@@ -1,9 +1,9 @@
 package com.charm.business.retrofit;
 
-import com.charm.business.responseModel.EmployeeLoginResponse;
-import com.charm.business.responseModel.EmployeeLogoutResponse;
-import com.charm.business.responseModel.ResetEmployeePasswordResponse;
-import com.charm.business.responseModel.EmployeeStatusResponse;
+import com.charm.business.responseModel.OwnerLoginResponse;
+import com.charm.business.responseModel.OwnerLogoutResponse;
+import com.charm.business.responseModel.ResetOwnerPasswordResponse;
+import com.charm.business.responseModel.OwnerStatusResponse;
 import com.charm.business.responseModel.RegisterOwnerResponse;
 import com.charm.business.responseModel.VerificationCodeResponse;
 import com.google.gson.JsonObject;
@@ -17,7 +17,7 @@ import retrofit2.http.POST;
 public interface ApiInterface {
 
     @GET("employeestatus")
-    Call<EmployeeStatusResponse> employeeStatus(@Header("Authorization") String loginToken);
+    Call<OwnerStatusResponse> employeeStatus(@Header("Authorization") String loginToken);
 
     @POST("verificationcode")
     Call<VerificationCodeResponse> verificationCode(@Body JsonObject jsonObject);
@@ -26,12 +26,12 @@ public interface ApiInterface {
     Call<RegisterOwnerResponse> registerOwner(@Body JsonObject jsonObject);
 
     @POST("resetemployeepassword")
-    Call<ResetEmployeePasswordResponse> resetEmployeePassword(@Body JsonObject jsonObject);
+    Call<ResetOwnerPasswordResponse> resetEmployeePassword(@Body JsonObject jsonObject);
 
     @POST("employeelogin")
-    Call<EmployeeLoginResponse> employeeLogin(@Body JsonObject jsonObject);
+    Call<OwnerLoginResponse> employeeLogin(@Body JsonObject jsonObject);
 
     @POST("employeelogout")
-    Call<EmployeeLogoutResponse> employeeLogout(@Body JsonObject jsonObject);
+    Call<OwnerLogoutResponse> employeeLogout(@Body JsonObject jsonObject);
 
 }

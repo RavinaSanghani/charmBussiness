@@ -25,10 +25,6 @@
             android:name="com.charm.business.LoginActivity"
             android:windowSoftInputMode="stateHidden" />
         <activity
-            android:name="com.charm.business.EmployeeRegisterActivity"
-            android:configChanges="orientation|screenSize|keyboardHidden"
-            android:windowSoftInputMode="stateHidden" />
-        <activity
             android:name="com.charm.business.OwnerRegisterActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:windowSoftInputMode="stateHidden" />

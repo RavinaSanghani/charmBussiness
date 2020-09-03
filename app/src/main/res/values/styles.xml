@@ -10,4 +10,5 @@
         <item name="colorControlActivated">@color/themeTextSelectedTinyColor</item>
         <item name="colorControlHighlight">@color/themeTextSelectedTinyColor</item>
     </style>
+
 </resources>

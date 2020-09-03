@@ -1,8 +1,10 @@
 package com.charm.business;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.webkit.WebView;
@@ -10,12 +12,11 @@ import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 
 @SuppressLint("SetJavaScriptEnabled")
+@RequiresApi(api = Build.VERSION_CODES.M)
 public class WebViewActivity extends AppCompatActivity {
 
     private static final String TAG = "WebViewActivity";
     private WebView webView;
-    private ProgressBar progressBar;
-
     private PrefManager prefManager;
 
     @Override
@@ -25,7 +26,6 @@ public class WebViewActivity extends AppCompatActivity {
 
         prefManager = new PrefManager(WebViewActivity.this);
 
-        progressBar = findViewById(R.id.progressBar);
         webView = findViewById(R.id.webView);
         webView.getSettings().setJavaScriptEnabled(true);
 
@@ -36,7 +36,7 @@ public class WebViewActivity extends AppCompatActivity {
         webView.setWebViewClient(new WebViewClient() {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                progressBar.setVisibility(View.VISIBLE);
+                Utility.progressBarDialogShow(WebViewActivity.this);
                 Utility.printLog(TAG, "url:" + url);
                 if (url.contains("pg=blank")){
                     prefManager.setString(PrefManager.KEY_LOGIN_TOKEN,"");
@@ -49,7 +49,7 @@ public class WebViewActivity extends AppCompatActivity {
             @Override
             public void onPageFinished(WebView view, String url) {
                 super.onPageFinished(view, url);
-                progressBar.setVisibility(View.GONE);
+                Utility.progressBarDialogDismiss();
             }
         });
 

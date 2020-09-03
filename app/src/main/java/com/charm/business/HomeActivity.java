@@ -1,5 +1,6 @@
 package com.charm.business;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,18 +8,28 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
+import java.time.Clock;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
 
 public class HomeActivity extends AppCompatActivity implements View.OnClickListener {
 
+    private static final String TAG = "HomeActivity";
     private RelativeLayout type_employee, type_owner;
     private TextView txt_time_of_day;
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +44,19 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         type_owner = findViewById(R.id.type_owner);
         type_employee.setOnClickListener(this);
         type_owner.setOnClickListener(this);
+
+        LocalTime checkLocalTime = LocalTime.now();
+        Utility.printLog(TAG,"Now:"+checkLocalTime);
+        if (checkLocalTime.isAfter(LocalTime.of(0,0)) && checkLocalTime.isBefore(LocalTime.of(11,59))) {
+            txt_time_of_day.setText(R.string.good_morning);
+        }else if (checkLocalTime.isAfter(LocalTime.of(12,0)) && checkLocalTime.isBefore(LocalTime.of(14,0))) {
+            txt_time_of_day.setText(R.string.good_noon);
+        } else if (checkLocalTime.isAfter(LocalTime.of(14,1)) && checkLocalTime.isBefore(LocalTime.of(17,0))) {
+            txt_time_of_day.setText(R.string.good_afternoon);
+        } else if (checkLocalTime.isAfter(LocalTime.of(17,1)) && checkLocalTime.isBefore(LocalTime.of(23,59))) {
+            txt_time_of_day.setText(R.string.good_evening);
+        }
+
     }
 
     @Override

@@ -4,21 +4,18 @@ import android.app.Activity;
 import android.os.Build;
 
 import com.charm.business.Constants;
-import com.charm.business.DialogProgressBar;
 import com.charm.business.DialogVerificationCode;
 import com.charm.business.HomeActivity;
 import com.charm.business.LoginActivity;
 import com.charm.business.MainActivity;
-import com.charm.business.OwnerRegisterActivity;
 import com.charm.business.PrefManager;
 import com.charm.business.RegistrationStepsActivity;
-import com.charm.business.SplashActivity;
 import com.charm.business.Utility;
-import com.charm.business.responseModel.EmployeeLoginResponse;
-import com.charm.business.responseModel.EmployeeLogoutResponse;
-import com.charm.business.responseModel.ResetEmployeePasswordResponse;
+import com.charm.business.responseModel.OwnerLoginResponse;
+import com.charm.business.responseModel.OwnerLogoutResponse;
+import com.charm.business.responseModel.ResetOwnerPasswordResponse;
 import com.charm.business.responseModel.VerificationCodeResponse;
-import com.charm.business.responseModel.EmployeeStatusResponse;
+import com.charm.business.responseModel.OwnerStatusResponse;
 import com.charm.business.responseModel.RegisterOwnerResponse;
 import com.google.gson.JsonObject;
 
@@ -40,10 +37,10 @@ public class ApiCall {
     public static void employeeStatus(final Activity activity, String loginToken) {
         prefManager = new PrefManager(activity);
         apiInterface = ApiClient.getClient().create(ApiInterface.class);
-        Call<EmployeeStatusResponse> employeeStatusCall = apiInterface.employeeStatus(loginToken);
-        employeeStatusCall.enqueue(new Callback<EmployeeStatusResponse>() {
+        Call<OwnerStatusResponse> employeeStatusCall = apiInterface.employeeStatus(loginToken);
+        employeeStatusCall.enqueue(new Callback<OwnerStatusResponse>() {
             @Override
-            public void onResponse(@NotNull Call<EmployeeStatusResponse> call, @NotNull Response<EmployeeStatusResponse> response) {
+            public void onResponse(@NotNull Call<OwnerStatusResponse> call, @NotNull Response<OwnerStatusResponse> response) {
                 if (response.isSuccessful()) {
                     if (response.body() != null) {
                         Utility.printLog(TAG, "employeeStatus:onResponse:" + response.body());
@@ -66,13 +63,12 @@ public class ApiCall {
                 } else {
                     Utility.showDialog(activity, Constants.KEY_ALERT,response.message());
                 }
-                //((SplashActivity) activity).hideProgressBar();
-                ((SplashActivity) activity).dialogProgressBarDiamiss();
+                Utility.progressBarDialogDismiss();
             }
 
             @Override
-            public void onFailure(@NotNull Call<EmployeeStatusResponse> call, @NotNull Throwable t) {
-                ((SplashActivity) activity).hideProgressBar();
+            public void onFailure(@NotNull Call<OwnerStatusResponse> call, @NotNull Throwable t) {
+                Utility.progressBarDialogDismiss();
                 Utility.printLog(TAG, "employeeStatus:onFailure:Error:" + t.getMessage());
             }
         });
@@ -99,12 +95,12 @@ public class ApiCall {
                 } else {
                     Utility.showDialog(activity, Constants.KEY_ALERT,response.message());
                 }
-                ((OwnerRegisterActivity) activity).hideProgressBar();
+                Utility.progressBarDialogDismiss();
             }
 
             @Override
             public void onFailure(@NotNull Call<VerificationCodeResponse> call, @NotNull Throwable t) {
-                ((OwnerRegisterActivity) activity).hideProgressBar();
+                Utility.progressBarDialogDismiss();
                 Utility.printLog(TAG, "verificationCode:onFailure:Error:" + t.getMessage());
             }
         });
@@ -133,12 +129,12 @@ public class ApiCall {
                     Utility.showDialog(activity, Constants.KEY_ALERT,response.message());
                 }
 
-                ((OwnerRegisterActivity) activity).hideProgressBar();
+                Utility.progressBarDialogDismiss();
             }
 
             @Override
             public void onFailure(@NotNull Call<RegisterOwnerResponse> call, @NotNull Throwable t) {
-                ((OwnerRegisterActivity) activity).hideProgressBar();
+                Utility.progressBarDialogDismiss();
                 Utility.printLog(TAG, "registerOwner:onFailure:Error:" + t.getMessage());
             }
         });
@@ -146,10 +142,10 @@ public class ApiCall {
 
     public static void resetEmployeePassword(final Activity activity, JsonObject jsonObject) {
         apiInterface = ApiClient.getClient().create(ApiInterface.class);
-        Call<ResetEmployeePasswordResponse> verificationCodeCall = apiInterface.resetEmployeePassword(jsonObject);
-        verificationCodeCall.enqueue(new Callback<ResetEmployeePasswordResponse>() {
+        Call<ResetOwnerPasswordResponse> verificationCodeCall = apiInterface.resetEmployeePassword(jsonObject);
+        verificationCodeCall.enqueue(new Callback<ResetOwnerPasswordResponse>() {
             @Override
-            public void onResponse(@NotNull Call<ResetEmployeePasswordResponse> call, @NotNull Response<ResetEmployeePasswordResponse> response) {
+            public void onResponse(@NotNull Call<ResetOwnerPasswordResponse> call, @NotNull Response<ResetOwnerPasswordResponse> response) {
 
                 if (response.isSuccessful()) {
                     if (response.body() != null) {
@@ -164,12 +160,12 @@ public class ApiCall {
                 } else {
                     Utility.showDialog(activity, Constants.KEY_ALERT,response.message());
                 }
-                ((LoginActivity)activity).hideProgressBar();
+                Utility.progressBarDialogDismiss();
             }
 
             @Override
-            public void onFailure(@NotNull Call<ResetEmployeePasswordResponse> call, @NotNull Throwable t) {
-                ((LoginActivity)activity).hideProgressBar();
+            public void onFailure(@NotNull Call<ResetOwnerPasswordResponse> call, @NotNull Throwable t) {
+                Utility.progressBarDialogDismiss();
                 Utility.printLog(TAG, "resetEmployeePassword:onFailure:Error:" + t.getMessage());
             }
         });
@@ -177,10 +173,10 @@ public class ApiCall {
 
     public static void employeeLogin(final Activity activity, JsonObject jsonObject) {
         apiInterface = ApiClient.getClient().create(ApiInterface.class);
-        Call<EmployeeLoginResponse> employeeLoginCall = apiInterface.employeeLogin(jsonObject);
-        employeeLoginCall.enqueue(new Callback<EmployeeLoginResponse>() {
+        Call<OwnerLoginResponse> employeeLoginCall = apiInterface.employeeLogin(jsonObject);
+        employeeLoginCall.enqueue(new Callback<OwnerLoginResponse>() {
             @Override
-            public void onResponse(@NotNull Call<EmployeeLoginResponse> call, @NotNull Response<EmployeeLoginResponse> response) {
+            public void onResponse(@NotNull Call<OwnerLoginResponse> call, @NotNull Response<OwnerLoginResponse> response) {
                 if (response.isSuccessful()) {
                     if (response.body() != null) {
                         Utility.printLog(TAG, "employeeLogin:onResponse:" + response.body());
@@ -206,12 +202,12 @@ public class ApiCall {
                 } else {
                     Utility.showDialog(activity, Constants.KEY_ALERT,response.message());
                 }
-                ((LoginActivity)activity).hideProgressBar();
+                Utility.progressBarDialogDismiss();
             }
 
             @Override
-            public void onFailure(@NotNull Call<EmployeeLoginResponse> call, @NotNull Throwable t) {
-                ((LoginActivity)activity).hideProgressBar();
+            public void onFailure(@NotNull Call<OwnerLoginResponse> call, @NotNull Throwable t) {
+                Utility.progressBarDialogDismiss();
                 Utility.printLog(TAG, "employeeLogin:onFailure:Error:" + t.getMessage());
             }
         });
@@ -219,10 +215,10 @@ public class ApiCall {
 
     public static void employeeLogout(final Activity activity, JsonObject jsonObject) {
         apiInterface = ApiClient.getClient().create(ApiInterface.class);
-        Call<EmployeeLogoutResponse> employeeLogoutCall = apiInterface.employeeLogout(jsonObject);
-        employeeLogoutCall.enqueue(new Callback<EmployeeLogoutResponse>() {
+        Call<OwnerLogoutResponse> employeeLogoutCall = apiInterface.employeeLogout(jsonObject);
+        employeeLogoutCall.enqueue(new Callback<OwnerLogoutResponse>() {
             @Override
-            public void onResponse(@NotNull Call<EmployeeLogoutResponse> call, @NotNull Response<EmployeeLogoutResponse> response) {
+            public void onResponse(@NotNull Call<OwnerLogoutResponse> call, @NotNull Response<OwnerLogoutResponse> response) {
                 if (response.isSuccessful()) {
                     if (response.body() != null) {
                         Utility.printLog(TAG, "employeeLogout:onResponse:" + response.body());
@@ -237,21 +233,16 @@ public class ApiCall {
                 } else {
                     Utility.showDialog(activity, Constants.KEY_ALERT,response.message());
                 }
-                ((RegistrationStepsActivity) activity).hideProgressBar();
-
+                Utility.progressBarDialogDismiss();
             }
 
             @Override
-            public void onFailure(@NotNull Call<EmployeeLogoutResponse> call, @NotNull Throwable t) {
-                ((RegistrationStepsActivity) activity).hideProgressBar();
+            public void onFailure(@NotNull Call<OwnerLogoutResponse> call, @NotNull Throwable t) {
+                Utility.progressBarDialogDismiss();
                 Utility.printLog(TAG, "employeeLogout:onFailure:Error:" + t.getMessage());
             }
         });
     }
 
-    public static void progressBarDialogShow(Activity activity){
-        DialogProgressBar dialogProgressBar=new DialogProgressBar(activity);
-        dialogProgressBar.show();
-        dialogProgressBar.setCanceledOnTouchOutside(false);
-    }
+
 }

@@ -4,12 +4,10 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/img_profile"
         android:layout_width="@dimen/icon_dialog_img_width"
         android:layout_height="@dimen/icon_dialog_img_height"
-        android:src="@drawable/enable_women"
-        android:foreground="@drawable/rounded_background"
         tools:ignore="ContentDescription,UnusedAttribute"
         tools:targetApi="m"/>
 </RelativeLayout>
