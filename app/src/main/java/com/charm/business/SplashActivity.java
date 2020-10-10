@@ -41,13 +41,9 @@ public class SplashActivity extends AppCompatActivity {
         Utility.printLog(TAG, "run:loginToken: " + loginToken);
 
         if (Utility.isConnectedToInternet(SplashActivity.this)) {
-            Utility.progressBarDialogShow(SplashActivity.this);
             ApiCall.employeeStatus(SplashActivity.this, loginToken);
-
         } else {
             Utility.showDialog(SplashActivity.this, Constants.KEY_ALERT, Constants.NO_INTERNET_CONNECTION);
         }
-
     }
-
 }

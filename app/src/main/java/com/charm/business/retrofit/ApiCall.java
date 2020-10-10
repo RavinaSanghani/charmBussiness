@@ -9,6 +9,7 @@ import com.charm.business.HomeActivity;
 import com.charm.business.LoginActivity;
 import com.charm.business.MainActivity;
 import com.charm.business.PrefManager;
+import com.charm.business.R;
 import com.charm.business.RegistrationStepsActivity;
 import com.charm.business.Utility;
 import com.charm.business.responseModel.OwnerLoginResponse;
@@ -47,28 +48,30 @@ public class ApiCall {
                         if (response.body().getCode().equals("100")) {
                             if (response.body().getIsOwner()) {
                                 if (response.body().getRegCompleted()) {
-                                    Utility.startActivity(activity, MainActivity.class, false);
+                                    Utility.startActivity(activity, MainActivity.class, true);
                                 } else {
                                     prefManager.putInteger(PrefManager.KEY_REGISTRATION_STEP, (int) (response.body().getRegStep() + 1));
-                                    Utility.startActivity(activity, RegistrationStepsActivity.class, false);
+                                    Utility.startActivity(activity, RegistrationStepsActivity.class, true);
                                 }
                             } else {
-                                Utility.startActivity(activity, MainActivity.class, false);
+                                Utility.startActivity(activity, MainActivity.class, true);
                             }
 
                         } else {
-                            Utility.startActivity(activity, HomeActivity.class, false);
+                            Utility.startActivity(activity, HomeActivity.class, true);
                         }
                     }
                 } else {
-                    Utility.showDialog(activity, Constants.KEY_ALERT,response.message());
+                    if (response.code() == 502){
+                        Utility.showDialog(activity, "",activity.getResources().getString(R.string.internal_server_error));
+                    }else {
+                        Utility.showDialog(activity, Constants.KEY_ALERT,response.message());
+                    }
                 }
-                Utility.progressBarDialogDismiss();
             }
 
             @Override
             public void onFailure(@NotNull Call<OwnerStatusResponse> call, @NotNull Throwable t) {
-                Utility.progressBarDialogDismiss();
                 Utility.printLog(TAG, "employeeStatus:onFailure:Error:" + t.getMessage());
             }
         });
@@ -85,7 +88,7 @@ public class ApiCall {
                     if (response.body() != null) {
                         Utility.printLog(TAG, "verificationCode:onResponse:" + response.body());
                         if (response.body().getCode().equals("100")) {
-                            DialogVerificationCode code = new DialogVerificationCode(activity, response.body().getVerificationCode());
+                            DialogVerificationCode code = new DialogVerificationCode(activity, response.body().getVerificationCode(), R.style.DialogRounded);
                             code.show();
                             code.setCanceledOnTouchOutside(false);
                         } else {
@@ -93,7 +96,11 @@ public class ApiCall {
                         }
                     }
                 } else {
-                    Utility.showDialog(activity, Constants.KEY_ALERT,response.message());
+                    if (response.code() == 502){
+                        Utility.showDialog(activity, "",activity.getResources().getString(R.string.internal_server_error));
+                    }else {
+                        Utility.showDialog(activity, Constants.KEY_ALERT,response.message());
+                    }
                 }
                 Utility.progressBarDialogDismiss();
             }
@@ -126,7 +133,11 @@ public class ApiCall {
                         }
                     }
                 } else {
-                    Utility.showDialog(activity, Constants.KEY_ALERT,response.message());
+                    if (response.code() == 502){
+                        Utility.showDialog(activity, "",activity.getResources().getString(R.string.internal_server_error));
+                    }else {
+                        Utility.showDialog(activity, Constants.KEY_ALERT,response.message());
+                    }
                 }
 
                 Utility.progressBarDialogDismiss();
@@ -158,7 +169,11 @@ public class ApiCall {
                         }
                     }
                 } else {
-                    Utility.showDialog(activity, Constants.KEY_ALERT,response.message());
+                    if (response.code() == 502){
+                        Utility.showDialog(activity, "",activity.getResources().getString(R.string.internal_server_error));
+                    }else {
+                        Utility.showDialog(activity, Constants.KEY_ALERT,response.message());
+                    }
                 }
                 Utility.progressBarDialogDismiss();
             }
@@ -231,7 +246,11 @@ public class ApiCall {
                         }
                     }
                 } else {
-                    Utility.showDialog(activity, Constants.KEY_ALERT,response.message());
+                    if (response.code() == 502){
+                        Utility.showDialog(activity, "",activity.getResources().getString(R.string.internal_server_error));
+                    }else {
+                        Utility.showDialog(activity, Constants.KEY_ALERT,response.message());
+                    }
                 }
                 Utility.progressBarDialogDismiss();
             }

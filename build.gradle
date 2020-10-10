@@ -22,10 +22,3 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
-ext {
-    rx2FastAndroidNetworking = "1.0.1"
-    rxjava2Version = '2.1.9'
-    rxandroidVersion = '2.0.2'
-    dagger2Version = '2.16'
-    lifecycleVersion = '2.0.0'
-}

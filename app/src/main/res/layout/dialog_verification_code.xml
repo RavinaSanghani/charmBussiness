@@ -1,52 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    tools:context=".DialogVerificationCode"
-    app:cardCornerRadius="@dimen/_10sdp">
-
-    <RelativeLayout
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/_5sdp">
+        android:padding="@dimen/_5sdp">
+
         <TextView
             android:id="@+id/txt_code"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/themeLoginBackground"
+            android:layout_marginTop="@dimen/_10sdp"
             android:gravity="start|top"
-            android:layout_margin="@dimen/_10sdp"
-            android:hint="@string/enter_verification_code"
-            android:textColorHint="@color/themeTextColor"
-            android:textColor="@color/themeTextColor"
-            android:textSize="@dimen/_14sdp"
-            tools:targetApi="lollipop"
-            tools:ignore="Autofill" />
+            android:text="@string/verification_code"
+            android:textColor="@color/themeLoginSepratorColor"
+            android:textSize="@dimen/_12ssp" />
+
+        <TextView
+            android:id="@+id/txt_enter_code"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txt_code"
+            android:background="@color/themeLoginBackground"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:paddingRight="@dimen/_20sdp"
+            android:paddingEnd="@dimen/_20sdp"
+            android:gravity="start|top"
+            android:text="@string/enter_verification_code"
+            android:textColor="@color/themeLoginSepratorColor"
+            android:textSize="@dimen/_12ssp"
+            tools:ignore="RtlSymmetry" />
+
         <EditText
             android:id="@+id/et_code"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/txt_code"
+            android:layout_below="@id/txt_enter_code"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginLeft="@dimen/_1sdp"
+            android:layout_marginRight="@dimen/_1sdp"
             android:background="@drawable/reset_password_background"
-            android:gravity="start|top"
+            android:gravity="center"
             android:inputType="number"
-            android:hint="@string/verification_code"
+            android:hint="@string/enter_code"
             android:textColor="@color/themeTextColor"
-            android:textSize="@dimen/_14sdp"
+            android:textSize="@dimen/_12ssp"
             tools:targetApi="lollipop"
             tools:ignore="Autofill" />
         <Button
-            android:id="@+id/btn_ok"
+            android:id="@+id/btn_resend"
+            style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/et_code"
-            android:layout_margin="@dimen/_20sdp"
-            android:background="@drawable/login_button_background"
+            android:background="@color/themeLoginBackground"
             android:gravity="center"
-            android:text="@string/ok"
+            android:text="@string/resend_code"
             android:textAllCaps="false"
-            android:textColor="@color/themeLabelTitleColor"
-            android:textSize="@dimen/_12sdp" />
+            android:textColor="@color/themeStepsLinkColor"
+            android:textSize="@dimen/_12ssp" />
+
     </RelativeLayout>
-</androidx.cardview.widget.CardView>

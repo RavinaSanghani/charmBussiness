@@ -62,7 +62,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 }
                 break;
             case R.id.btn_forgot_password:
-                forgotPasswordDialog = new DialogForgotPassword(LoginActivity.this);
+                forgotPasswordDialog = new DialogForgotPassword(LoginActivity.this,LoginActivity.this,R.style.DialogRounded);
                 forgotPasswordDialog.show();
                 break;
         }

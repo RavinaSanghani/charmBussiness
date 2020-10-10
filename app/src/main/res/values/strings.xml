@@ -32,5 +32,9 @@
     <string name="re_register"><u>Re-register</u></string>
     <string name="ok">Ok</string>
     <string name="verification_code">Verification code</string>
-    <string name="enter_verification_code">Enter verification code</string>
+    <string name="enter_verification_code">Enter verification code received in your mobile number</string>
+    <string name="enter_code">Enter code</string>
+    <string name="resend_code">Resend code</string>
+    <string name="internal_server_error">Internal server error please try again later</string>
+
 </resources>

@@ -44,16 +44,15 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_height="@dimen/_50sdp">
 
             <ImageView
                 android:id="@+id/img_phone"
-                android:layout_width="@dimen/_30sdp"
-                android:layout_height="@dimen/_30sdp"
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="@dimen/_50sdp"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true"
+                android:padding="@dimen/_3sdp"
                 android:src="@drawable/icon_phone_white"
                 tools:ignore="ContentDescription" />
 
@@ -62,7 +61,7 @@
                 android:layout_height="wrap_content"
                 android:layout_toEndOf="@+id/img_phone"
                 android:layout_toRightOf="@+id/img_phone"
-                android:gravity="start"
+                android:gravity="start|center_vertical"
                 android:hint="@string/mobile"
                 app:hintTextColor="@color/themeTextColor"
                 tools:targetApi="lollipop">
@@ -73,11 +72,12 @@
                     android:layout_height="wrap_content"
                     android:paddingBottom="@dimen/space_text_tiny"
                     android:theme="@style/EditTextTheme"
-                    android:gravity="start"
+                    android:gravity="start|center_vertical"
                     android:importantForAutofill="no"
                     android:inputType="number"
                     android:textColor="@color/themeTextColor"
-                    android:textSize="@dimen/_14sdp"
+                    android:textColorHighlight="@color/themeTextColor"
+                    android:textSize="@dimen/_14ssp"
                     android:singleLine="true"
                     tools:ignore="LabelFor"
                     tools:targetApi="lollipop" />
@@ -87,16 +87,15 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_height="@dimen/_50sdp">
 
             <ImageView
                 android:id="@+id/img_lock"
-                android:layout_width="@dimen/_30sdp"
-                android:layout_height="@dimen/_30sdp"
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="@dimen/_50sdp"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true"
+                android:padding="@dimen/_3sdp"
                 android:src="@drawable/icon_lock_white"
                 tools:ignore="ContentDescription" />
 
@@ -105,7 +104,7 @@
                 android:layout_height="wrap_content"
                 android:layout_toEndOf="@+id/img_lock"
                 android:layout_toRightOf="@+id/img_lock"
-                android:gravity="start"
+                android:gravity="start|center_vertical"
                 android:hint="@string/password"
                 app:hintTextColor="@color/themeTextColor"
                 tools:targetApi="lollipop">
@@ -116,11 +115,11 @@
                     android:layout_height="wrap_content"
                     android:paddingBottom="@dimen/space_text_tiny"
                     android:theme="@style/EditTextTheme"
-                    android:gravity="start"
+                    android:gravity="start|center_vertical"
                     android:importantForAutofill="no"
                     android:inputType="textPassword"
                     android:textColor="@color/themeTextColor"
-                    android:textSize="@dimen/_14sdp"
+                    android:textSize="@dimen/_14ssp"
                     android:singleLine="true"
                     tools:ignore="LabelFor"
                     tools:targetApi="lollipop" />
@@ -170,7 +169,7 @@
             android:gravity="center"
             android:text="@string/forgot_password"
             android:textAllCaps="false"
-            android:textColor="@color/themeBackgroundLightGray"
+            android:textColor="@color/themeLabelTitleLightColor"
             android:textSize="@dimen/_12sdp" />
 
         <View
@@ -179,4 +178,5 @@
             android:layout_height="@dimen/_2sdp"
             android:background="@color/themeLoginSepratorColor" />
     </LinearLayout>
+
 </RelativeLayout>

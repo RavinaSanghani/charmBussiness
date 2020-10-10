@@ -13,10 +13,10 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 
+import com.charm.business.control.GoEditText;
+import com.charm.business.control.GoEditTextListener;
 import com.charm.business.retrofit.ApiCall;
 import com.google.gson.JsonObject;
-
-import static com.charm.business.PrefManager.KEY_PROFILE_SELECT;
 
 @RequiresApi(api = Build.VERSION_CODES.M)
 public class OwnerRegisterActivity extends AppCompatActivity implements View.OnClickListener {
@@ -24,12 +24,10 @@ public class OwnerRegisterActivity extends AppCompatActivity implements View.OnC
     private static final String TAG = "OwnerRegisterActivity";
 
     private ImageView img_owner_male, img_owner_woman;
-    private EditText et_name, et_mobile, et_email, et_password, et_password_verification;
+    private GoEditText et_name, et_mobile, et_email, et_password, et_password_verification;
     private String str_nickname, str_name, str_mobile, str_email, str_registration_step, str_password, str_password_verification, verification_code;
-
-    private String loginToken;
     private Button btn_register;
-    private boolean str_profile;
+    private boolean isMan;
 
     private PrefManager prefManager;
 
@@ -58,11 +56,12 @@ public class OwnerRegisterActivity extends AppCompatActivity implements View.OnC
         img_owner_male.setOnClickListener(this);
         img_owner_woman.setOnClickListener(this);
 
-        /*et_name.setText("test");
-        et_mobile.setText("0508768674");
-        et_email.setText("testDemo@gmail.com");
-        et_password.setText("1234567890");
-        et_password_verification.setText("1234567890");*/
+        Utility.EditTextColorChange(OwnerRegisterActivity.this,et_name);
+        Utility.EditTextColorChange(OwnerRegisterActivity.this,et_mobile);
+        Utility.EditTextColorChange(OwnerRegisterActivity.this,et_email);
+        Utility.EditTextColorChange(OwnerRegisterActivity.this,et_password);
+        Utility.EditTextColorChange(OwnerRegisterActivity.this,et_password_verification);
+
     }
 
     @Override
@@ -75,8 +74,7 @@ public class OwnerRegisterActivity extends AppCompatActivity implements View.OnC
                 img_owner_male.setBackgroundColor(getResources().getColor(R.color.themeOwnerUnselectedColor));
                 img_owner_woman.setBackgroundColor(getResources().getColor(R.color.themeOwnerSelectedColor));
 
-                prefManager.putBoolean(KEY_PROFILE_SELECT, true);
-
+                isMan = true;
                 break;
             case R.id.img_owner_woman:
                 img_owner_woman.setImageResource(R.drawable.img_selected_owner_women);
@@ -84,7 +82,7 @@ public class OwnerRegisterActivity extends AppCompatActivity implements View.OnC
                 img_owner_woman.setBackgroundColor(getResources().getColor(R.color.themeOwnerUnselectedColor));
                 img_owner_male.setBackgroundColor(getResources().getColor(R.color.themeOwnerSelectedColor));
 
-                prefManager.putBoolean(KEY_PROFILE_SELECT, false);
+                isMan = false;
                 break;
             case R.id.btn_register:
                 str_name = et_name.getText().toString();
@@ -95,8 +93,6 @@ public class OwnerRegisterActivity extends AppCompatActivity implements View.OnC
                 str_nickname = "";
 
                 str_registration_step = String.valueOf(prefManager.getInteger(PrefManager.KEY_REGISTRATION_STEP, 1));
-                str_profile = prefManager.getBoolean(PrefManager.KEY_PROFILE_SELECT, true);
-                Utility.printLog(TAG, "onClick:str_registration_step: " + str_registration_step);
 
                 if (validation()) {
                     verificationCode(str_mobile);
@@ -104,6 +100,10 @@ public class OwnerRegisterActivity extends AppCompatActivity implements View.OnC
 
                 break;
         }
+    }
+
+    public void resendVerificationCode(){
+        btn_register.performClick();
     }
 
     private boolean validation() {
@@ -187,7 +187,7 @@ public class OwnerRegisterActivity extends AppCompatActivity implements View.OnC
         jsonObject.addProperty(Constants.KEY_API_REGISTRATION_STEP, str_registration_step);
         jsonObject.addProperty(Constants.KEY_API_PASSWORD, str_password);
         jsonObject.addProperty(Constants.KEY_API_VERIFICATION_CODE, verificationCode);
-        jsonObject.addProperty(Constants.KEY_API_MALE, str_profile);
+        jsonObject.addProperty(Constants.KEY_API_MALE, isMan);
         Utility.printLog(TAG, "registerOwner:jsonObject:" + jsonObject);
 
         if (Utility.isConnectedToInternet(OwnerRegisterActivity.this)) {

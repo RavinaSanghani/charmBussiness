@@ -5,6 +5,7 @@ import androidx.annotation.RequiresApi;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -22,8 +23,9 @@ public class DialogForgotPassword extends Dialog {
     private String str_mobile;
     private EditText et_mobile;
     private Activity activity;
-    public DialogForgotPassword(@NonNull Activity activity) {
-        super(activity);
+
+    public DialogForgotPassword(@NonNull Context context, Activity activity, int themeResId) {
+        super(context, themeResId);
         this.activity=activity;
     }
 

@@ -7,7 +7,7 @@ import android.content.SharedPreferences;
 public class PrefManager {
 
 
-    private String PREFREANCE_NAME = "CharmBusiness";
+    private String PREFERENCE_NAME = "CharmBusiness";
 
     public static String KEY_REGISTRATION_STEP = "registration_step";
     public static String KEY_EMPLOYEE_ID = "employeeID";
@@ -21,7 +21,7 @@ public class PrefManager {
     @SuppressLint("CommitPrefEdits")
     public PrefManager(Context context){
         if (context != null){
-            sharedPreferences = context.getSharedPreferences(PREFREANCE_NAME, Context.MODE_PRIVATE);
+            sharedPreferences = context.getSharedPreferences(PREFERENCE_NAME, Context.MODE_PRIVATE);
             editor = sharedPreferences.edit();
         }
     }

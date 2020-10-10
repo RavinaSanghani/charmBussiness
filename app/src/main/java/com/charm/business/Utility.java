@@ -10,8 +10,12 @@ import android.os.Build;
 import android.util.Log;
 import android.view.Gravity;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.charm.business.control.GoEditText;
+import com.charm.business.control.GoEditTextListener;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
@@ -57,7 +61,7 @@ public class Utility {
         title_text.setTextColor(android.graphics.Color.BLACK);
         title_text.setTextSize(23);
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+        AlertDialog.Builder builder = new AlertDialog.Builder(activity,R.style.DialogRounded);
         builder.setCustomTitle(title_text);
         builder.setMessage(message);
         builder.setCancelable(false);
@@ -92,5 +96,15 @@ public class Utility {
 
     public static void progressBarDialogDismiss() {
         dialogProgressBar.dismiss();
+    }
+
+    public static void EditTextColorChange(Context context,GoEditText editText){
+        editText.addListener(new GoEditTextListener() {
+            @Override
+            public void onUpdate() {
+                editText.setTextColor(context.getResources().getColor(R.color.themeTextColor));
+            }
+        });
+
     }
 }

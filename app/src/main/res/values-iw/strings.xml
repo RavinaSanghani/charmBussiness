@@ -33,5 +33,9 @@
     <string name="re_register">להירשם מחדש</string>
     <string name="ok">בסדר</string>
     <string name="verification_code">קוד אימות</string>
-    <string name="enter_verification_code">הכנס קוד אימות</string>
+    <string name="enter_verification_code">הזן קוד אימות שהתקבל במספר הנייד שלך</string>
+    <string name="enter_code">להזין את הקוד</string>
+    <string name="resend_code">שלח קוד שוב</string>
+    <string name="internal_server_error">שגיאת שרת פנימית אנא נסה שוב מאוחר יותר</string>
+
 </resources>
