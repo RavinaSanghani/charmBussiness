@@ -56,12 +56,6 @@ public class OwnerRegisterActivity extends AppCompatActivity implements View.OnC
         img_owner_male.setOnClickListener(this);
         img_owner_woman.setOnClickListener(this);
 
-        Utility.EditTextColorChange(OwnerRegisterActivity.this,et_name);
-        Utility.EditTextColorChange(OwnerRegisterActivity.this,et_mobile);
-        Utility.EditTextColorChange(OwnerRegisterActivity.this,et_email);
-        Utility.EditTextColorChange(OwnerRegisterActivity.this,et_password);
-        Utility.EditTextColorChange(OwnerRegisterActivity.this,et_password_verification);
-
     }
 
     @Override

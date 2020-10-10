@@ -98,13 +98,4 @@ public class Utility {
         dialogProgressBar.dismiss();
     }
 
-    public static void EditTextColorChange(Context context,GoEditText editText){
-        editText.addListener(new GoEditTextListener() {
-            @Override
-            public void onUpdate() {
-                editText.setTextColor(context.getResources().getColor(R.color.themeTextColor));
-            }
-        });
-
-    }
 }
